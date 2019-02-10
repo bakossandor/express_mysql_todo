@@ -24,11 +24,7 @@ module.exports = (app) => {
     
     app.post("/list", todo_controller.create_todo)
     
-    // app.put("/list", (req, res) => {
-    //     res.send("update todo list")
-    // })
+    app.put("/list", todo_controller.update_todo)
     
-    // app.delete("/list", (req, res) => {
-    //     res.send("delete todo list")
-    // })
+    app.delete("/list", todo_controller.delete_todo)
 }

@@ -28,5 +28,30 @@ module.exports = {
                 res.send(result)
             }
         })
+    },
+
+    delete_todo(req, res) {
+        const { _id } = req.body
+        connection.query(`DELETE FROM todo_list WHERE _id = "${_id}"`, (err, result) => {
+            if (err) {
+                res.status(400).send({"error": "could not delete the item"})
+            } else {
+                res.status(201).send({"msg": "item deleted"})
+            }
+        })
+    },
+
+    update_todo(req, res) {
+        const { _id, item, status, user_id, parent_id, color_code } = req.body
+        connection.query(
+            `UPDATE Todo_list SET item = "${item}", status = "${status}", ${parent_id === "NULL" ? "parent_id = NULL" : "parent_id = " + parent_id}, color_code = "${color_code}" WHERE _id = ${_id}`, 
+            (err, result) => {
+                if (err) {
+                    console.log(err)
+                    res.status(400).send({"error": `could not update ${_id} - ${item}`})
+                } else {
+                    res.send({"msg": `item ${_id} - ${item} - updated`})
+                }
+        })
     }
 }
