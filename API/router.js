@@ -1,41 +1,36 @@
-const express = require("express")
-const router = express.Router()
+const user_controller = require("./controllers/user_controller")
 
-router.get("/",  (req, res) => {
-    res.send("home page")
-})
+module.exports = (app) => {
 
-router.get("/login", (req, res) => {
-    res.send("login page")
-})
-
-router.post("/login", (req, res) => {
-    res.send("login request")
-})
-
-router.get("/register", (req, res) => {
-    res.send("register page")
-})
-
-router.post("/register", (req, res) => {
-    res.send("login request")
-})
-
-router.get("/list", (req, res) => {
-    res.send("todo list")
-})
-
-router.post("/list", (req, res) => {
-    res.send("todo list")
-})
-
-router.put("/list", (req, res) => {
-    res.send("update todo list")
-})
-
-router.delete("/list", (req, res) => {
-    res.send("delete todo list")
-})
-
-
-module.exports = router
+    app.get("/",  (req, res) => {
+        res.send("home page")
+    })
+    
+    app.post("/login", user_controller.login_user)
+    
+    app.get("/login", (req, res) => {
+        res.send("login request")
+    })
+    
+    app.post("/register", user_controller.reg_user)
+    
+    app.get("/register", (req, res) => {
+        res.send("login request")
+    })
+    
+    app.get("/list", (req, res) => {
+        res.send("todo list")
+    })
+    
+    app.post("/list", (req, res) => {
+        res.send("todo list")
+    })
+    
+    app.put("/list", (req, res) => {
+        res.send("update todo list")
+    })
+    
+    app.delete("/list", (req, res) => {
+        res.send("delete todo list")
+    })
+}

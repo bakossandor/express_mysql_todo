@@ -1,10 +1,12 @@
 const express = require("express")
 const mysql = require("mysql")
+const bodyParser = require("body-parser")
 
 const router = require("./router")
 
-const app = express() // initiating the app as an express instance
-app.use(router) // passing the router middleware into the application
+const app = express()
+app.use(bodyParser.json())
+router(app)
 
 const port = 3000
 
