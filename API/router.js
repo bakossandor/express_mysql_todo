@@ -1,25 +1,27 @@
 const user_controller = require("./controllers/user_controller")
 const todo_controller = require("./controllers/todo_controller")
-const express = require("express")
 
 module.exports = (app) => {
 
+    //SERVING STATIC
     // app.get("/",  (req, res) => {
     //     res.send("home page")
     // })
-    
-    app.post("/login", user_controller.login_user)
     
     // app.get("/login", (req, res) => {
         
     // })
     
-    app.post("/register", user_controller.reg_user)
-    
     // app.get("/register", (req, res) => {
     //     res.send("login request")
     // })
     
+    //API
+
+    app.post("/login", user_controller.login_user)
+
+    app.post("/register", user_controller.reg_user)
+
     app.get("/list/:id", todo_controller.get_todos)
     
     app.post("/list", todo_controller.create_todo)

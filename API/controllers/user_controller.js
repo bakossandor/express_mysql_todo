@@ -33,7 +33,12 @@ module.exports = {
                 if (result.length === 0) {
                     res.status(401).send({"error": "wrond credentials"})
                 } else {
-                    res.send({"msg": "successfull login"})
+                    // sending token representiong auth
+                    const token = {
+                        user_name: result[0].user_name,
+                        _id: result[0]._id
+                    }
+                    res.header({Authorization: `Bearer ${token}`}).send({"msg": "successfull login"})
                 }
             }
         })
